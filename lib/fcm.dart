@@ -20,6 +20,21 @@ class Fcm {
     return version;
   }
 
+  static Future<bool> deleteToken() async {
+    final bool version = await _channel.invokeMethod('deleteToken');
+    return version;
+  }
+
+  static Future<bool> pauseNotification() async {
+    final bool version = await _channel.invokeMethod('pause_notification');
+    return version;
+  }
+
+  static Future<bool> resumeNotification() async {
+    final bool version = await _channel.invokeMethod('resume_notification');
+    return version;
+  }
+
   static Stream<dynamic> get onClickNotification{
     return _stream.receiveBroadcastStream().map<dynamic>((dynamic event) => event);
   }

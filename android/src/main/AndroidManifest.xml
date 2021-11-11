@@ -16,7 +16,7 @@
 
 
         <receiver
-            android:name=".BroadCastClickNotification"
+            android:name=".FcmPlugin"
             android:permission="com.google.android.c2dm.permission.SEND"
             android:exported="true">
             <intent-filter>

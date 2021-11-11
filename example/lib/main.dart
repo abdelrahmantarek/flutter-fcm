@@ -96,7 +96,32 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+
+                Text('Running on: $_platformVersion\n'),
+                SizedBox(height: 10,),
+                RaisedButton(onPressed: (){
+                  Fcm.pauseNotification();
+                },child: Text("pause"),),
+
+                SizedBox(height: 10,),
+
+                RaisedButton(onPressed: (){
+                  Fcm.resumeNotification();
+                },child: Text("resume"),),
+
+                SizedBox(height: 10,),
+
+                RaisedButton(onPressed: (){
+                  Fcm.deleteToken();
+                },child: Text("deleteToken"),)
+
+
+              ],
+            ),
+          ),
         ),
       ),
     );

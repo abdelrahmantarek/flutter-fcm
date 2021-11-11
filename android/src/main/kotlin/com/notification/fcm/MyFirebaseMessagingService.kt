@@ -24,7 +24,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     companion object{
         val TAG: String = "MyFirebaseMessagingService"
         val NOTIFICATION: String = "NOTIFICATION"
-        val ACTION_CLICK: String = "action.CLICK_NOTIFICATION"
+        val SHOW_NOTIFICATION_KEY: String = "show_notification"
+        val REGISTRATION: String = "com.google.android.c2dm.intent.REGISTRATION"
         fun firebase(): FirebaseMessaging {
             return FirebaseMessaging.getInstance();
         }
@@ -53,7 +54,17 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 val title: String = remoteMessage.data.get("title").toString()
                 val body: String = remoteMessage.data.get("body").toString()
                 val toScreen: String = remoteMessage.data.get("navigate_to_screen").toString()
-                sendNotification(title,body,toScreen,remoteMessage.data)
+
+                val sharedPreference = getSharedPreferences(NOTIFICATION,Context.MODE_PRIVATE)
+
+
+                Log.d(TAG, "SHOW: ${sharedPreference.getBoolean(SHOW_NOTIFICATION_KEY,true)}")
+
+
+
+                if(sharedPreference.getBoolean(SHOW_NOTIFICATION_KEY,true)){
+                    sendNotification(title,body,toScreen,remoteMessage.data)
+                }
             }
         }
     }
@@ -89,8 +100,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val resId = resources.getIdentifier("ic_launcher".split("\\.").get(0), "mipmap", applicationInfo.packageName)
 
-        val myIntent = Intent(this, BroadCastClickNotification::class.java)
-//          myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        val myIntent = Intent(this, FcmPlugin::class.java)
         myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         myIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         myIntent.putExtra("navigate_to_screen",to_screen);
@@ -120,11 +130,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
 
     fun saveData(data: String){
-        val sharedPreference =  getSharedPreferences(NOTIFICATION,Context.MODE_PRIVATE)
-        var editor = sharedPreference.edit()
+        val sharedPreference = getSharedPreferences(NOTIFICATION,Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
         editor.putString("data",data)
         editor.apply()
     }
+
+
 
 
 }
