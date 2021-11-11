@@ -1,0 +1,155 @@
+{
+  "project_info": {
+    "project_number": "962100858569",
+    "firebase_url": "https://low-calories-5b369.firebaseio.com",
+    "project_id": "low-calories-5b369",
+    "storage_bucket": "low-calories-5b369.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962100858569:android:0a80bae0c987c0d9600718",
+        "android_client_info": {
+          "package_name": "com.notification.fcm_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962100858569-1co8h1rhq53a4ce92k79he5mc6u27odd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkxQzZMN1vfh7VWfRcJWBzO-APeWG2xLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962100858569-1co8h1rhq53a4ce92k79he5mc6u27odd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "962100858569-12skmb643otrbr4t80h6kpqpedife8fj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "www.lowcalories.ad"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962100858569:android:b8d418df284fe73b600718",
+        "android_client_info": {
+          "package_name": "drivers.control.control_lowcalories"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962100858569-1co8h1rhq53a4ce92k79he5mc6u27odd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkxQzZMN1vfh7VWfRcJWBzO-APeWG2xLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962100858569-1co8h1rhq53a4ce92k79he5mc6u27odd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "962100858569-12skmb643otrbr4t80h6kpqpedife8fj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "www.lowcalories.ad"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962100858569:android:75eb1e27b125e01a600718",
+        "android_client_info": {
+          "package_name": "lowcalories.driver.low_calories_driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962100858569-1co8h1rhq53a4ce92k79he5mc6u27odd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkxQzZMN1vfh7VWfRcJWBzO-APeWG2xLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962100858569-1co8h1rhq53a4ce92k79he5mc6u27odd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "962100858569-12skmb643otrbr4t80h6kpqpedife8fj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "www.lowcalories.ad"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962100858569:android:c6618b95d8045de5600718",
+        "android_client_info": {
+          "package_name": "www.lowcalories.ae"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962100858569-1co8h1rhq53a4ce92k79he5mc6u27odd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkxQzZMN1vfh7VWfRcJWBzO-APeWG2xLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962100858569-1co8h1rhq53a4ce92k79he5mc6u27odd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "962100858569-12skmb643otrbr4t80h6kpqpedife8fj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "www.lowcalories.ad"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
