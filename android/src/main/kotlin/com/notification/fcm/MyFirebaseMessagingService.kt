@@ -54,14 +54,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 val title: String = remoteMessage.data.get("title").toString()
                 val body: String = remoteMessage.data.get("body").toString()
                 val toScreen: String = remoteMessage.data.get("navigate_to_screen").toString()
-
                 val sharedPreference = getSharedPreferences(NOTIFICATION,Context.MODE_PRIVATE)
-
-
                 Log.d(TAG, "SHOW: ${sharedPreference.getBoolean(SHOW_NOTIFICATION_KEY,true)}")
-
-
-
                 if(sharedPreference.getBoolean(SHOW_NOTIFICATION_KEY,true)){
                     sendNotification(title,body,toScreen,remoteMessage.data)
                 }
@@ -94,18 +88,15 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
 
-    private fun sendNotification(title: String?,body: String?,to_screen: String?,data:Any) {
+    private fun sendNotification(title: String?,body: String?,to_screen: String?,data:Map<String,Any>) {
 
         Log.d(TAG, "Navigator To : ${this.packageName+".MainActivity"}")
 
         val resId = resources.getIdentifier("ic_launcher".split("\\.").get(0), "mipmap", applicationInfo.packageName)
 
         val myIntent = Intent(this, FcmPlugin::class.java)
-        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        myIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        myIntent.putExtra("navigate_to_screen",to_screen);
-        myIntent.putExtra("data",data.toString());
-        saveData(data.toString());
+        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        myIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
 
         val pendingIntent = PendingIntent.getBroadcast(this, 0, myIntent,  0)
 //      val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
@@ -140,3 +131,4 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
 
 }
+

@@ -7,7 +7,9 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.annotation.NonNull
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.firebase.messaging.FirebaseMessaging
+import com.notification.fcm.MyFirebaseMessagingService.Companion.TAG
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -15,12 +17,7 @@ import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
-
-
-
-
-
-
+import org.json.JSONObject
 
 
 /** FcmPlugin */
@@ -34,7 +31,7 @@ class FcmPlugin: BroadcastReceiver() , FlutterPlugin, MethodChannel.MethodCallHa
   private lateinit var _stream : EventChannel
   private lateinit var flutterPluginBinding : FlutterPlugin.FlutterPluginBinding
   private var snik : EventChannel.EventSink? = null
-
+  val mapper = ObjectMapper()
 
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -53,7 +50,6 @@ class FcmPlugin: BroadcastReceiver() , FlutterPlugin, MethodChannel.MethodCallHa
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     this.activity = binding.activity
-    ContextHolder.applicationContext = activity.applicationContext
     binding.addOnNewIntentListener(this)
     resumeNotification()
   }
@@ -76,11 +72,8 @@ class FcmPlugin: BroadcastReceiver() , FlutterPlugin, MethodChannel.MethodCallHa
 
 
   override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
-    Log.d("event_listener","end")
     snik = events
-    if(activity.intent.hasExtra("data")){
-      snik?.success(activity.intent.getStringExtra("data"))
-    }
+    snik?.success(activity.intent.getStringExtra("data"))
   }
 
 
@@ -93,6 +86,8 @@ class FcmPlugin: BroadcastReceiver() , FlutterPlugin, MethodChannel.MethodCallHa
   @SuppressLint("LongLogTag")
   override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
     when (call.method) {
+
+
       "getPlatformVersion" -> {
         result.success("FcmPlugin ${android.os.Build.VERSION.RELEASE}")
         MyFirebaseMessagingService.firebase().token.addOnCompleteListener { task ->
@@ -104,6 +99,8 @@ class FcmPlugin: BroadcastReceiver() , FlutterPlugin, MethodChannel.MethodCallHa
           Log.d(MyFirebaseMessagingService.TAG, "token : $token")
         }
       }
+
+
       "getToken" -> {
         MyFirebaseMessagingService.firebase().token.addOnCompleteListener { task ->
           if (!task.isSuccessful) {
@@ -149,10 +146,13 @@ class FcmPlugin: BroadcastReceiver() , FlutterPlugin, MethodChannel.MethodCallHa
     editor.apply()
   }
 
+
   private fun deleteToken(){
     FirebaseMessaging.getInstance().deleteToken()
   }
 
+
+  @SuppressLint("LongLogTag")
   override fun onReceive(context: Context?, receiver: Intent?) {
     val sharedPreference = context?.getSharedPreferences(MyFirebaseMessagingService.NOTIFICATION,Context.MODE_PRIVATE)
     val intent = Intent().setClassName(context!!,context.packageName+".MainActivity")
@@ -164,10 +164,10 @@ class FcmPlugin: BroadcastReceiver() , FlutterPlugin, MethodChannel.MethodCallHa
 
 
   override fun onNewIntent(intent: Intent?): Boolean {
+    Log.d("My App", intent?.getStringExtra("data").toString())
     snik?.success(intent?.getStringExtra("data"))
     return true
   }
-
 
 
 }
