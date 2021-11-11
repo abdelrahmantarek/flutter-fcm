@@ -7,9 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.annotation.NonNull
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.firebase.messaging.FirebaseMessaging
-import com.notification.fcm.MyFirebaseMessagingService.Companion.TAG
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -17,7 +15,7 @@ import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
-import org.json.JSONObject
+
 
 
 /** FcmPlugin */
@@ -31,7 +29,6 @@ class FcmPlugin: BroadcastReceiver() , FlutterPlugin, MethodChannel.MethodCallHa
   private lateinit var _stream : EventChannel
   private lateinit var flutterPluginBinding : FlutterPlugin.FlutterPluginBinding
   private var snik : EventChannel.EventSink? = null
-  val mapper = ObjectMapper()
 
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {

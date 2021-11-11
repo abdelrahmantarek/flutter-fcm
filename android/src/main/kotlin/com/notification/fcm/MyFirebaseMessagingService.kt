@@ -12,7 +12,7 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-
+import org.json.JSONObject
 
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
@@ -97,6 +97,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val myIntent = Intent(this, FcmPlugin::class.java)
         myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         myIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        myIntent.putExtra("data","${JSONObject(data)}")
+        saveData("${JSONObject(data)}")
 
         val pendingIntent = PendingIntent.getBroadcast(this, 0, myIntent,  0)
 //      val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)

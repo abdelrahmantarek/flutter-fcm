@@ -24,11 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="988e3d01-9adf-40eb-8f22-f3f1c38c7250" name="Default Changelist" comment="fix android">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/ContextHolder.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/FcmPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/FcmPlugin.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/MyFirebaseMessagingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/MyFirebaseMessagingService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/kotlin/com/notification/fcm_example/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/kotlin/com/notification/fcm_example/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +92,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636644523326</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix android">
+      <created>1636653872555</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1636653872555</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -124,26 +128,26 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636643999618" />
-    <state width="1877" height="286" key="GridCell.Tab.0.bottom" timestamp="1636644539188">
+    <state width="1382" height="281" key="GridCell.Tab.0.bottom" timestamp="1636653916407">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="286" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636644539188" />
-    <state width="1877" height="286" key="GridCell.Tab.0.center" timestamp="1636644539188">
+    <state width="1382" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653916407" />
+    <state width="1382" height="281" key="GridCell.Tab.0.center" timestamp="1636653916407">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="286" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636644539188" />
-    <state width="1877" height="286" key="GridCell.Tab.0.left" timestamp="1636644539188">
+    <state width="1382" height="281" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653916407" />
+    <state width="1382" height="281" key="GridCell.Tab.0.left" timestamp="1636653916407">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="286" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636644539188" />
-    <state width="1877" height="286" key="GridCell.Tab.0.right" timestamp="1636644539188">
+    <state width="1382" height="281" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653916407" />
+    <state width="1382" height="281" key="GridCell.Tab.0.right" timestamp="1636653916407">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="286" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636644539188" />
-    <state x="-1279" y="254" key="Vcs.Push.Dialog.v2" timestamp="1636644527009">
+    <state width="1382" height="281" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653916407" />
+    <state x="-1279" y="254" key="Vcs.Push.Dialog.v2" timestamp="1636653924479">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1279" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636644527009" />
+    <state x="-1279" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653924479" />
     <state x="538" y="239" width="585" height="592" key="find.popup" timestamp="1636639769196">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
