@@ -3,6 +3,7 @@ package com.notification.fcm
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
@@ -12,14 +13,10 @@ import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-import io.flutter.plugin.common.MethodChannel.MethodCallHandler
-import io.flutter.plugin.common.MethodChannel.Result
-
-
 
 
 /** FcmPlugin */
-class FcmPlugin: FlutterPlugin, MethodCallHandler ,ActivityAware,EventChannel.StreamHandler{
+class FcmPlugin: FlutterPlugin, MethodChannel.MethodCallHandler, ActivityAware, EventChannel.StreamHandler{
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -48,43 +45,6 @@ class FcmPlugin: FlutterPlugin, MethodCallHandler ,ActivityAware,EventChannel.St
     channel.setMethodCallHandler(this)
     _stream = EventChannel(flutterPluginBinding.binaryMessenger,"notification.eventchannel.sample/stream")
     _stream.setStreamHandler(this)
-  }
-
-
-
-  @SuppressLint("LongLogTag")
-  override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    when (call.method) {
-        "getPlatformVersion" -> {
-          result.success("FcmPlugin ${android.os.Build.VERSION.RELEASE}")
-          MyFirebaseMessagingService.firebase().token.addOnCompleteListener { task ->
-            if (!task.isSuccessful) {
-              Log.d("MyFirebaseMessaging", "Fetching FCM registration token failed ${task.exception}")
-            }
-            // Get new FCM registration token
-            val token = task.result
-            Log.d(MyFirebaseMessagingService.TAG, "token : $token")
-          }
-        }
-        "getToken" -> {
-          MyFirebaseMessagingService.firebase().token.addOnCompleteListener { task ->
-            if (!task.isSuccessful) {
-              Log.d("MyFirebaseMessaging", "Fetching FCM registration token failed ${task.exception}")
-            }
-            // Get new FCM registration token
-            val token = task.result
-            result.success(token)
-          }
-        }
-      "on_click_notification" -> {
-        if(activity.intent.getStringExtra("data") != null){
-           result.success(activity.intent.getStringExtra("data"));
-        }
-      }
-      else -> {
-          result.notImplemented()
-      }
-    }
   }
 
 
@@ -122,6 +82,38 @@ class FcmPlugin: FlutterPlugin, MethodCallHandler ,ActivityAware,EventChannel.St
     event_listener?.endOfStream()
     event_listener = null;
     TODO("Not yet implemented")
+  }
+
+
+
+  @SuppressLint("LongLogTag")
+  override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
+    when (call.method) {
+      "getPlatformVersion" -> {
+        result.success("FcmPlugin ${android.os.Build.VERSION.RELEASE}")
+        MyFirebaseMessagingService.firebase().token.addOnCompleteListener { task ->
+          if (!task.isSuccessful) {
+            Log.d("MyFirebaseMessaging", "Fetching FCM registration token failed ${task.exception}")
+          }
+          // Get new FCM registration token
+          val token = task.result
+          Log.d(MyFirebaseMessagingService.TAG, "token : $token")
+        }
+      }
+      "getToken" -> {
+        MyFirebaseMessagingService.firebase().token.addOnCompleteListener { task ->
+          if (!task.isSuccessful) {
+            Log.d("MyFirebaseMessaging", "Fetching FCM registration token failed ${task.exception}")
+          }
+          // Get new FCM registration token
+          val token = task.result
+          result.success(token)
+        }
+      }
+      else -> {
+        result.notImplemented()
+      }
+    }
   }
 
 }

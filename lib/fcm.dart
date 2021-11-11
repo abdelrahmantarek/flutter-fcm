@@ -3,6 +3,8 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
+
+
 class Fcm {
 
   static const MethodChannel _channel = MethodChannel('fcm');
@@ -10,6 +12,11 @@ class Fcm {
 
   static Future<String?> get platformVersion async {
     final String? version = await _channel.invokeMethod('getPlatformVersion');
+    return version;
+  }
+
+  static Future<String?> get getToken async {
+    final String? version = await _channel.invokeMethod('getToken');
     return version;
   }
 

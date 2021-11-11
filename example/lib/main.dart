@@ -5,8 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:fcm/fcm.dart';
 
 
-
-
 //
 // abstract class ClickNotificationListener {
 //   abstract fun onClickNotification(intent: Intent?);
@@ -39,8 +37,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+
   String _platformVersion = 'Unknown';
   StreamSubscription? streamSubscription;
+
 
   @override
   void dispose() {
@@ -48,10 +49,15 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
+
   @override
-  void initState() {
+  void initState(){
     super.initState();
+    Fcm.getToken.then((value){
+      print(value);
+    });
     streamSubscription = Fcm.onClickNotification.listen((event) {
+      print(event.toString());
       setState(() {
         _platformVersion = event;
       });
@@ -95,4 +101,6 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+
+
 }

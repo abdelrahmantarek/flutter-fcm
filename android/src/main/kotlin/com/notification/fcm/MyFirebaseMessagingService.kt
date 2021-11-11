@@ -23,6 +23,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     companion object{
         val TAG: String = "MyFirebaseMessagingService"
+        val NOTIFICATION: String = "NOTIFICATION"
         val ACTION_CLICK: String = "action.CLICK_NOTIFICATION"
         fun firebase(): FirebaseMessaging {
             return FirebaseMessaging.getInstance();
@@ -47,7 +48,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         // Check if message contains a data payload.
         remoteMessage.data.isNotEmpty().let {
-            Log.d(TAG, "Message data payload: " + remoteMessage.data)
             // Compose and show notification
             if (!remoteMessage.data.isNullOrEmpty()) {
                 val title: String = remoteMessage.data.get("title").toString()
@@ -90,13 +90,15 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val resId = resources.getIdentifier("ic_launcher".split("\\.").get(0), "mipmap", applicationInfo.packageName)
 
         val myIntent = Intent(this, BroadCastClickNotification::class.java)
-          myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-          myIntent.putExtra("navigate_to_screen",to_screen);
-          myIntent.putExtra("data",data.toString());
+//          myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        myIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        myIntent.putExtra("navigate_to_screen",to_screen);
+        myIntent.putExtra("data",data.toString());
+        saveData(data.toString());
 
         val pendingIntent = PendingIntent.getBroadcast(this, 0, myIntent,  0)
-
-//        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+//      val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         val channelId = "fcm_default_channel"
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
@@ -114,8 +116,14 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(channel)
         }
         notificationManager.notify(0, notificationBuilder.build())
+    }
 
 
+    fun saveData(data: String){
+        val sharedPreference =  getSharedPreferences(NOTIFICATION,Context.MODE_PRIVATE)
+        var editor = sharedPreference.edit()
+        editor.putString("data",data)
+        editor.apply()
     }
 
 
