@@ -10,7 +10,6 @@ class Fcm {
 
 
   static const MethodChannel _channel = MethodChannel('fcm');
-  static const EventChannel _stream =  EventChannel('notification.eventchannel.sample/stream');
   static ValueChanged<dynamic>? onClickNotification;
   static ValueChanged<dynamic>? onMessage;
 
@@ -67,10 +66,6 @@ class Fcm {
     final bool version = await _channel.invokeMethod('show_notification',{"title":title,"body":body,"data":data ?? {}});
     return version;
   }
-
-  // static Stream<dynamic> get onClickNotification{
-  //   return _stream.receiveBroadcastStream().map<dynamic>((dynamic event) => event);
-  // }
 
 
 
