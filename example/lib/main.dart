@@ -28,6 +28,7 @@ import 'package:fcm/fcm.dart';
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -55,15 +56,41 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState(){
     super.initState();
+
+
     Fcm.getToken.then((value){
       print(value);
     });
-    streamSubscription = Fcm.onClickNotification.listen((event) {
+
+
+    Fcm.onClickNotification = (event){
+      if(event == null){
+        return;
+      }
       print(event.toString());
       setState(() {
         json = jsonDecode(event);
       });
-    });
+    };
+
+
+    Fcm.onMessage = (event){
+      if(event == null){
+        return;
+      }
+      print(event.toString());
+      setState(() {
+        json = jsonDecode(event);
+        json.clear();
+        json["onMessage"] = "onMessage";
+      });
+
+      Fcm.showNotification(title: "ABDO",body: "TAREK",data: {});
+    };
+
+
+    Fcm.startListener();
+
   }
 
 

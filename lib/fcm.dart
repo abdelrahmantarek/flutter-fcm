@@ -1,14 +1,42 @@
 
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 
 
 class Fcm {
 
+
   static const MethodChannel _channel = MethodChannel('fcm');
   static const EventChannel _stream =  EventChannel('notification.eventchannel.sample/stream');
+  static ValueChanged<dynamic>? onClickNotification;
+  static ValueChanged<dynamic>? onMessage;
+
+
+
+  static startListener(){
+    _channel.setMethodCallHandler((MethodCall call) => _handleMethodCall(call));
+    _channel.invokeMethod("startListener");
+  }
+
+
+  static _handleMethodCall(MethodCall call) async{
+    // print("MethodCall : " + call.method);
+    switch(call.method){
+      case "on_click_notification":
+        onClickNotification!(call.arguments);
+        break;
+        case "on_message":
+        onMessage!(call.arguments);
+        break;
+      default:
+        throw MissingPluginException();
+    }
+    return Future<dynamic>.value();
+  }
+
 
   static Future<String?> get platformVersion async {
     final String? version = await _channel.invokeMethod('getPlatformVersion');
@@ -35,8 +63,15 @@ class Fcm {
     return version;
   }
 
-  static Stream<dynamic> get onClickNotification{
-    return _stream.receiveBroadcastStream().map<dynamic>((dynamic event) => event);
+  static Future<bool> showNotification({String title = "title",String body = "body",Map<String,dynamic>? data}) async {
+    final bool version = await _channel.invokeMethod('show_notification',{"title":title,"body":body,"data":data ?? {}});
+    return version;
   }
+
+  // static Stream<dynamic> get onClickNotification{
+  //   return _stream.receiveBroadcastStream().map<dynamic>((dynamic event) => event);
+  // }
+
+
 
 }

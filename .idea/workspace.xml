@@ -23,9 +23,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="988e3d01-9adf-40eb-8f22-f3f1c38c7250" name="Default Changelist" comment="fix android">
+      <change afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/FcmPluginBackground.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/actions/Receiver.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/helper/ContextHolder.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/helper/Utils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/notification/NotificationC.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/receiver/BackgroundReceiver.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/receiver/OnMessageReceived.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/flutter-fcm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/flutter-fcm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/FcmPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/FcmPlugin.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/MyFirebaseMessagingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/MyFirebaseMessagingService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/MyFirebaseMessagingService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/Debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/Release.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/test/widget_test.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/SwiftFcmPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/SwiftFcmPlugin.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/fcm.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/ios/fcm.podspec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/fcm.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fcm.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +68,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
@@ -128,29 +155,38 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636643999618" />
-    <state width="1382" height="281" key="GridCell.Tab.0.bottom" timestamp="1636653916407">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="1878" height="269" key="GridCell.Tab.0.bottom" timestamp="1636738741896">
+      <screen x="1920" y="25" width="1920" height="1055" />
     </state>
     <state width="1382" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653916407" />
-    <state width="1382" height="281" key="GridCell.Tab.0.center" timestamp="1636653916407">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="1386" height="269" key="GridCell.Tab.0.bottom/0.25.1920.1000/1920.25.1920.1055@0.25.1920.1000" timestamp="1636722891235" />
+    <state width="1878" height="269" key="GridCell.Tab.0.bottom/0.25.1920.1000/1920.25.1920.1055@1920.25.1920.1055" timestamp="1636738741896" />
+    <state width="1878" height="269" key="GridCell.Tab.0.center" timestamp="1636738741896">
+      <screen x="1920" y="25" width="1920" height="1055" />
     </state>
     <state width="1382" height="281" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653916407" />
-    <state width="1382" height="281" key="GridCell.Tab.0.left" timestamp="1636653916407">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="1386" height="269" key="GridCell.Tab.0.center/0.25.1920.1000/1920.25.1920.1055@0.25.1920.1000" timestamp="1636722891234" />
+    <state width="1878" height="269" key="GridCell.Tab.0.center/0.25.1920.1000/1920.25.1920.1055@1920.25.1920.1055" timestamp="1636738741896" />
+    <state width="1878" height="269" key="GridCell.Tab.0.left" timestamp="1636738741896">
+      <screen x="1920" y="25" width="1920" height="1055" />
     </state>
     <state width="1382" height="281" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653916407" />
-    <state width="1382" height="281" key="GridCell.Tab.0.right" timestamp="1636653916407">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="1386" height="269" key="GridCell.Tab.0.left/0.25.1920.1000/1920.25.1920.1055@0.25.1920.1000" timestamp="1636722891234" />
+    <state width="1878" height="269" key="GridCell.Tab.0.left/0.25.1920.1000/1920.25.1920.1055@1920.25.1920.1055" timestamp="1636738741896" />
+    <state width="1878" height="269" key="GridCell.Tab.0.right" timestamp="1636738741896">
+      <screen x="1920" y="25" width="1920" height="1055" />
     </state>
     <state width="1382" height="281" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653916407" />
+    <state width="1386" height="269" key="GridCell.Tab.0.right/0.25.1920.1000/1920.25.1920.1055@0.25.1920.1000" timestamp="1636722891235" />
+    <state width="1878" height="269" key="GridCell.Tab.0.right/0.25.1920.1000/1920.25.1920.1055@1920.25.1920.1055" timestamp="1636738741896" />
     <state x="-1279" y="254" key="Vcs.Push.Dialog.v2" timestamp="1636653924479">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1279" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653924479" />
-    <state x="538" y="239" width="585" height="592" key="find.popup" timestamp="1636639769196">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="1100" y="266" width="585" height="570" key="find.popup" timestamp="1636661652158">
+      <screen x="0" y="25" width="1920" height="1000" />
     </state>
     <state x="538" y="239" width="585" height="592" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1636639769196" />
+    <state x="1100" y="266" width="585" height="570" key="find.popup/0.25.1920.1000/1920.25.1920.1055@0.25.1920.1000" timestamp="1636661652158" />
   </component>
 </project>
