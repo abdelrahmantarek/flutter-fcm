@@ -23,6 +23,7 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
     let instance = SwiftFcmPlugin()
     instance.channel = channel;
     instance.registrar = registrar;
+    registrar.addApplicationDelegate(instance)
     registrar.addMethodCallDelegate(instance, channel: channel)
       print("start register --------------------------------------------- 1")
   }
