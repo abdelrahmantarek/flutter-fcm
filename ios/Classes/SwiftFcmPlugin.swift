@@ -2,6 +2,7 @@ import Flutter
 import UIKit
 import FirebaseMessaging
 import FirebaseCore
+import UserNotifications
 
 
 
@@ -11,9 +12,7 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
   var window: UIWindow?
   let gcmMessageIDKey = "gcm.message_id"
   var channel: FlutterMethodChannel?
-    
-    
-    
+  var registrar: FlutterPluginRegistrar?
     
     
     
@@ -23,21 +22,11 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
     let channel = FlutterMethodChannel(name: "fcm", binaryMessenger: registrar.messenger())
     let instance = SwiftFcmPlugin()
     instance.channel = channel;
+    instance.registrar = registrar;
     registrar.addMethodCallDelegate(instance, channel: channel)
-    registrar.addApplicationDelegate(instance)
       print("start register --------------------------------------------- 1")
   }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -49,15 +38,9 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [AnyHashable : Any] = [:]) -> Bool {
         print("start application --------------------------------------------- 2")
         
-
           // [START set_messaging_delegate]
           Messaging.messaging().delegate = self
           // [END set_messaging_delegate]
-
-
-        if let token = Messaging.messaging().fcmToken {
-            print("fcmToken ---------------------------------------------\(String(describing: token)):  " )
-        }
 
           // Register for remote notifications. This shows a permission dialog on first run, to
           // show the dialog at a more appropriate time move this registration accordingly.
@@ -100,6 +83,7 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
     
     
     
+    
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
            // Print message ID.
@@ -107,9 +91,11 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
                print("Message ID: \(messageID)")
            }
           channel?.invokeMethod("on_click_notification", arguments: response.notification.request.content.categoryIdentifier)
+          print("userNotificationCenter ---------------------------------------------")
           completionHandler()
     }
- 
+
+
     
     
     
@@ -117,10 +103,12 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
     
     
     
-    
-    
-    
-    
+    public func applicationWillTerminate(_ application: UIApplication) {
+        print("applicationWillTerminate ---------------------------------------------")
+        let center = UNUserNotificationCenter.current()
+        center.removeAllDeliveredNotifications() // To remove all delivered notifications
+        center.removeAllPendingNotificationRequests() // To remove all pending notifications which are not delivered yet but scheduled.
+    }
     
     
     
@@ -130,6 +118,7 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
     }
 
     
+ 
     
     
     
@@ -152,7 +141,7 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
         print("Message ID: \(messageID)")
       }
 
-//      print(userInfo)
+        print(userInfo)
     }
 
     
@@ -189,11 +178,13 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
     // [END receive_message]
     
  
-    
-    
-    
-    
-    
+
+    public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+
+       
+    }
+   
+  
     
     
     
@@ -208,10 +199,14 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
     func send_Noti(userInfo:NSDictionary?){
             
              let data = try! JSONSerialization.data(withJSONObject: userInfo, options: .prettyPrinted)
-          
+
+        
+            channel?.invokeMethod("on_message", arguments: String(data: data, encoding: .utf8)!)
+        
+        
 
             let content = UNMutableNotificationContent()
-//            let requestIdentifier = "rajanNotification"
+
 
             content.badge = 1
             content.title = userInfo!["title"] as? String ?? String("w");
@@ -286,18 +281,33 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
     
     
 
+  var click_intent :String = "waiting"
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    result("iOS " + UIDevice.current.systemVersion)
+      
+      if(call.method == "getToken"){
+          if let token = Messaging.messaging().fcmToken {
+              result((String(describing: token)))
+          }
+      }
+      
+      if(call.method == "startListener"){
+          registrar?.addApplicationDelegate(self)
+      }
+      
+      if(call.method == "deleteToken"){
+          Messaging.messaging().deleteToken(completion: { (err) -> Void in
+              print("error delete token ---------\(String(describing: err)) ")
+          })
+      }
+      
+      if(call.method == "cancel_all_notification"){
+          let center = UNUserNotificationCenter.current()
+          center.removeAllDeliveredNotifications() // To remove all delivered notifications
+          center.removeAllPendingNotificationRequests() // To remove all pending notifications which are not delivered yet but scheduled.
+      }
+      
   }
-
-    
-    
-    
-    
-    
-    
-    
     
     
     func messaging(_ messaging: Messaging, fcmToken: String?) {
@@ -312,7 +322,7 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
       }
-}
+   }
 
 
 extension String {

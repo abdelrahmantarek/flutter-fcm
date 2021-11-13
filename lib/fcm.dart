@@ -1,5 +1,6 @@
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -59,6 +60,11 @@ class Fcm {
 
   static Future<bool> resumeNotification() async {
     final bool version = await _channel.invokeMethod('resume_notification');
+    return version;
+  }
+
+  static Future<bool> cancelAllNotification() async {
+    final bool version = await _channel.invokeMethod('cancel_all_notification');
     return version;
   }
 
