@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>962100858569-g82mrhpuold0ojmo1aiujkb35j7499vl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.962100858569-g82mrhpuold0ojmo1aiujkb35j7499vl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAtpSolEkBdquX1Y9Ksy3lZXV8O4Bj-uNA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>962100858569</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.notification.lowcalories</string>
+	<key>PROJECT_ID</key>
+	<string>low-calories-5b369</string>
+	<key>STORAGE_BUCKET</key>
+	<string>low-calories-5b369.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:962100858569:ios:2304628c5cbe85ef600718</string>
+	<key>DATABASE_URL</key>
+	<string>https://low-calories-5b369.firebaseio.com</string>
+</dict>
+</plist>
