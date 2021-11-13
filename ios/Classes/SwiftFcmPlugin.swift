@@ -9,23 +9,23 @@ import UserNotifications
 public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
     
 
-  var window: UIWindow?
+
   let gcmMessageIDKey = "gcm.message_id"
-  var channel: FlutterMethodChannel?
-  var registrar: FlutterPluginRegistrar?
-    
-    
-    
+  var channel: FlutterMethodChannel? = nil
+  var registrar: FlutterPluginRegistrar? = nil
+  var instance: SwiftFcmPlugin? = nil
+
     
     
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "fcm", binaryMessenger: registrar.messenger())
     let instance = SwiftFcmPlugin()
-    instance.channel = channel;
-    instance.registrar = registrar;
+    instance.channel = channel
+    instance.registrar = registrar
+    instance.instance = instance
     registrar.addApplicationDelegate(instance)
-    registrar.addMethodCallDelegate(instance, channel: channel)
-      print("start register --------------------------------------------- 1")
+    registrar.addMethodCallDelegate(instance.instance!, channel: channel)
+    print("start register --------------------------------------------- 1")
   }
 
     
@@ -282,18 +282,21 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
     
     
 
-  var click_intent :String = "waiting"
+
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
       
       if(call.method == "getToken"){
           if let token = Messaging.messaging().fcmToken {
+              print((String(describing: token)))
               result((String(describing: token)))
           }
       }
       
       if(call.method == "startListener"){
           registrar?.addApplicationDelegate(self)
+          print("start listener --------------------------------- ")
+          result(true)
       }
       
       if(call.method == "deleteToken"){
@@ -323,19 +326,19 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
       }
-   }
-
-
-extension String {
-    func utf8DecodedString()-> String {
-        let data = self.data(using: .utf8)
-        let message = String(data: data!, encoding: .nonLossyASCII) ?? ""
-        return message
+    
+    
+    func askPermissionNotification(){
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            
+            if let error = error {
+                // Handle the error here.
+            }
+            
+            // Enable or disable features based on the authorization.
+        }
     }
     
-    func utf8EncodedString()-> String {
-        let messageData = self.data(using: .nonLossyASCII)
-        let text = String(data: messageData!, encoding: .utf8) ?? ""
-        return text
-    }
 }
+
