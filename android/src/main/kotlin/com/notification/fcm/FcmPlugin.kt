@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.annotation.NonNull
 import com.google.firebase.messaging.FirebaseMessaging
 import com.notification.fcm.helper.ContextHolder
+import com.notification.fcm.helper.Utils
 import com.notification.fcm.notification.NotificationC
 import com.notification.fcm.receiver.BackgroundReceiver
 import com.notification.fcm.receiver.OnMessageReceived
@@ -118,6 +119,11 @@ class FcmPlugin: FlutterPlugin, MethodChannel.MethodCallHandler, PluginRegistry.
         // start background
         BackgroundReceiver.startBackgroundIsolate(1, FlutterShellArgs.fromIntent(activity.getIntent()))
 
+
+        // add icons notification
+        val value = call.arguments as Map<String, Any>
+        var androidSettings = value.getValue("android_settings") as Map<String,Any>
+        Utils.setIcon(androidSettings.getValue("icon").toString(),androidSettings.getValue("resource").toString())
         result.success(true)
       }
 

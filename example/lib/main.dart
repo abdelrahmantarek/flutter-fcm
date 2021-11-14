@@ -89,7 +89,12 @@ class _MyAppState extends State<MyApp> {
     };
 
 
-    Fcm.startListener();
+    Fcm.startListener(
+      androidSettings: AndroidSettings(
+        icon: "salad",
+        resource: "drawable"
+      )
+    );
 
   }
 

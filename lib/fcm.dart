@@ -2,8 +2,10 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:fcm/android_settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+export 'package:fcm/android_settings.dart';
 
 
 
@@ -16,9 +18,10 @@ class Fcm {
 
 
 
-  static startListener(){
+  static startListener({AndroidSettings? androidSettings}){
     _channel.setMethodCallHandler((MethodCall call) => _handleMethodCall(call));
-    _channel.invokeMethod("startListener");
+     androidSettings ??= AndroidSettings();
+    _channel.invokeMethod("startListener",{"android_settings":androidSettings.toJson()});
   }
 
 

@@ -13,6 +13,7 @@ import androidx.core.app.NotificationCompat
 import com.notification.fcm.helper.ContextHolder
 import com.notification.fcm.receiver.OnMessageReceived
 import com.notification.fcm.actions.Receiver
+import com.notification.fcm.helper.Utils
 import org.json.JSONObject
 
 class NotificationC {
@@ -21,7 +22,7 @@ class NotificationC {
     @SuppressLint("LongLogTag")
     fun showNotification(title: String?, body: String?, data:Map<String,Any>) {
 
-        val resId = ContextHolder.applicationContext?.resources?.getIdentifier("ic_launcher".split("\\.").get(0), "mipmap", ContextHolder.applicationContext?.packageName)
+        val resId = ContextHolder.applicationContext?.resources?.getIdentifier(Utils.getIcon().split("\\.").get(0), Utils.getResource(), ContextHolder.applicationContext?.packageName)
 
         val myIntent = Intent(ContextHolder.applicationContext, Receiver::class.java)
         myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -50,6 +51,8 @@ class NotificationC {
         notificationManager.notify(0, notificationBuilder.build())
 
     }
+
+
 
 
 }
