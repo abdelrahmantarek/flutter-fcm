@@ -22,16 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="988e3d01-9adf-40eb-8f22-f3f1c38c7250" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/example/android/app/src/main/res/drawable/salad.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/android_settings.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/FcmPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/FcmPlugin.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/helper/Utils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/helper/Utils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/notification/NotificationC.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/notification/fcm/notification/NotificationC.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/fcm.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fcm.dart" afterDir="false" />
-    </list>
+    <list default="true" id="988e3d01-9adf-40eb-8f22-f3f1c38c7250" name="Default Changelist" comment="Fix Receiver Android" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,6 +34,9 @@
         <option value="Dart File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="BRANCH" value="main" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -169,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636829835132</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Fix Receiver Android">
+      <created>1637253876903</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1637253876903</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,7 +191,8 @@
     <MESSAGE value="fix ios run only" />
     <MESSAGE value="fix ios click" />
     <MESSAGE value="fix show notification on ios" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix show notification on ios" />
+    <MESSAGE value="Fix Receiver Android" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Receiver Android" />
   </component>
   <component name="WindowStateProjectService">
     <state x="554" y="99" key="CommitChangelistDialog2" timestamp="1636829835072">
@@ -230,10 +232,10 @@
     <state width="1382" height="281" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653916407" />
     <state width="1321" height="218" key="GridCell.Tab.0.right/0.25.1920.1000/1920.25.1920.1055@0.25.1920.1000" timestamp="1636895294825" />
     <state width="1878" height="290" key="GridCell.Tab.0.right/0.25.1920.1000/1920.25.1920.1055@1920.25.1920.1055" timestamp="1636760225971" />
-    <state x="641" y="269" key="Vcs.Push.Dialog.v2" timestamp="1636829867360">
-      <screen x="0" y="25" width="1920" height="1000" />
+    <state x="-1279" y="254" key="Vcs.Push.Dialog.v2" timestamp="1637253894983">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1279" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653924479" />
+    <state x="-1279" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1637253894983" />
     <state x="641" y="269" key="Vcs.Push.Dialog.v2/0.25.1920.1000/1920.25.1920.1055@0.25.1920.1000" timestamp="1636829867360" />
     <state x="1100" y="266" width="585" height="570" key="find.popup" timestamp="1636661652158">
       <screen x="0" y="25" width="1920" height="1000" />
