@@ -8,18 +8,17 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
-import android.util.Log
+import android.os.PowerManager
 import androidx.core.app.NotificationCompat
-import com.notification.fcm.helper.ContextHolder
-import com.notification.fcm.receiver.OnMessageReceived
 import com.notification.fcm.actions.Receiver
+import com.notification.fcm.helper.ContextHolder
 import com.notification.fcm.helper.Utils
 import org.json.JSONObject
 
 class NotificationC {
 
 
-    @SuppressLint("LongLogTag")
+    @SuppressLint("LongLogTag", "InvalidWakeLockTag")
     fun showNotification(title: String?, body: String?, data:Map<String,Any>) {
 
         val resId = ContextHolder.applicationContext?.resources?.getIdentifier(Utils.getIcon().split("\\.").get(0), Utils.getResource(), ContextHolder.applicationContext?.packageName)
@@ -35,12 +34,14 @@ class NotificationC {
         val channelId = "fcm_default_channel"
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(ContextHolder.applicationContext!!, channelId)
-            .setSmallIcon(resId!!)
-            .setContentTitle(title)
-            .setContentText(body)
-            .setAutoCancel(true)
-            .setSound(defaultSoundUri)
-            .setContentIntent(pendingIntent)
+                .setSmallIcon(resId!!)
+                .setContentTitle(title)
+                .setContentText(body)
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setCategory(NotificationCompat.CATEGORY_ALARM)
+                .setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent)
         val notificationManager = ContextHolder.applicationContext?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         // Since android Oreo notification channel is needed.
         // https://developer.android.com/training/notify-user/build-notification#Priority
@@ -49,6 +50,12 @@ class NotificationC {
             notificationManager.createNotificationChannel(channel)
         }
         notificationManager.notify(0, notificationBuilder.build())
+
+
+
+        val pm: PowerManager = ContextHolder.applicationContext?.getSystemService(Context.POWER_SERVICE) as PowerManager
+        val wl: PowerManager.WakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP,"TAG")
+        wl.acquire(15000)
 
     }
 

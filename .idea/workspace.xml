@@ -22,7 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="988e3d01-9adf-40eb-8f22-f3f1c38c7250" name="Default Changelist" comment="Fix Receiver Android" />
+    <list default="true" id="988e3d01-9adf-40eb-8f22-f3f1c38c7250" name="Default Changelist" comment="Fix Receiver Android">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637253876903</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Fix Receiver Android">
+      <created>1637254402429</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1637254402429</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -232,10 +241,10 @@
     <state width="1382" height="281" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1636653916407" />
     <state width="1321" height="218" key="GridCell.Tab.0.right/0.25.1920.1000/1920.25.1920.1055@0.25.1920.1000" timestamp="1636895294825" />
     <state width="1878" height="290" key="GridCell.Tab.0.right/0.25.1920.1000/1920.25.1920.1055@1920.25.1920.1055" timestamp="1636760225971" />
-    <state x="-1279" y="254" key="Vcs.Push.Dialog.v2" timestamp="1637253894983">
+    <state x="-1279" y="254" key="Vcs.Push.Dialog.v2" timestamp="1637254407458">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1279" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1637253894983" />
+    <state x="-1279" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1637254407458" />
     <state x="641" y="269" key="Vcs.Push.Dialog.v2/0.25.1920.1000/1920.25.1920.1055@0.25.1920.1000" timestamp="1636829867360" />
     <state x="1100" y="266" width="585" height="570" key="find.popup" timestamp="1636661652158">
       <screen x="0" y="25" width="1920" height="1000" />
