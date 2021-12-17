@@ -78,4 +78,24 @@ class Fcm {
 
 
 
+  /// Subscribe to topic in background.
+  ///
+  /// [topic] must match the following regular expression:
+  /// `[a-zA-Z0-9-_.~%]{1,900}`.
+  static Future<void> subscribeToTopic(String topic) {
+    _assertTopicName(topic);
+    return _channel.invokeMethod('subscribeToTopic',{"topic":topic});
+  }
+
+  /// Unsubscribe from topic in background.
+  static Future<void> unsubscribeFromTopic(String topic) {
+    _assertTopicName(topic);
+    return _channel.invokeMethod('unsubscribeFromTopic',{"topic":topic});
+  }
+  static _assertTopicName(String topic) {
+    bool isValidTopic = RegExp(r'^[a-zA-Z0-9-_.~%]{1,900}$').hasMatch(topic);
+    assert(isValidTopic);
+  }
+
+
 }

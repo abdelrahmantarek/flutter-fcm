@@ -96,6 +96,9 @@ class _MyAppState extends State<MyApp> {
       )
     );
 
+
+    Fcm.subscribeToTopic("manager");
+
   }
 
 

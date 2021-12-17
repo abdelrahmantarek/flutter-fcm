@@ -311,7 +311,23 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
           center.removeAllPendingNotificationRequests() // To remove all pending notifications which are not delivered yet but scheduled.
       }
       
+      
+      if(call.method == "subscribeToTopic"){
+          let data = call.arguments as! NSDictionary?;
+          Messaging.messaging().subscribe(toTopic: data?.value(forKey: "topic") as! String) { error in
+      
+          }
+      }
+      
+      if(call.method == "unsubscribeFromTopic"){
+          let data = call.arguments as! NSDictionary?;
+          Messaging.messaging().unsubscribe(fromTopic: data?.value(forKey: "topic") as! String) { error in
+      
+          }
+      }
+      
   }
+    
     
     
     func messaging(_ messaging: Messaging, fcmToken: String?) {

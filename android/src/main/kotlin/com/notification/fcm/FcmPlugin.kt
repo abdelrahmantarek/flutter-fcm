@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.annotation.NonNull
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.messaging.FirebaseMessaging
 import com.notification.fcm.helper.ContextHolder
 import com.notification.fcm.helper.Utils
@@ -19,7 +21,7 @@ import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
-
+import java.util.*
 
 
 /** FcmPlugin */
@@ -127,11 +129,26 @@ class FcmPlugin: FlutterPlugin, MethodChannel.MethodCallHandler, PluginRegistry.
         result.success(true)
       }
 
+      "subscribeToTopic" -> {
+        // add icons notification
+        val value = call.arguments as Map<String, Any>
+        FirebaseMessaging.getInstance().subscribeToTopic(value.getValue("topic") as String)
+      }
+
+      "unsubscribeFromTopic" -> {
+        // add icons notification
+        val value = call.arguments as Map<String, Any>
+        FirebaseMessaging.getInstance().unsubscribeFromTopic(value.getValue("topic") as String)
+      }
+
       else -> {
         result.notImplemented()
       }
     }
   }
+
+
+
 
 
 
