@@ -9,6 +9,8 @@ import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
 import android.os.PowerManager
+import android.util.Log
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.notification.fcm.actions.Receiver
 import com.notification.fcm.helper.ContextHolder
@@ -20,6 +22,8 @@ class NotificationC {
 
     @SuppressLint("LongLogTag", "InvalidWakeLockTag")
     fun showNotification(title: String?, body: String?, data:Map<String,Any>) {
+
+
 
         val resId = ContextHolder.applicationContext?.resources?.getIdentifier(Utils.getIcon().split("\\.").get(0), Utils.getResource(), ContextHolder.applicationContext?.packageName)
 
@@ -34,14 +38,15 @@ class NotificationC {
         val channelId = "fcm_default_channel"
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(ContextHolder.applicationContext!!, channelId)
-                .setSmallIcon(resId!!)
-                .setContentTitle(title)
-                .setContentText(body)
-                .setAutoCancel(true)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setCategory(NotificationCompat.CATEGORY_ALARM)
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent)
+            .setSmallIcon(resId!!)
+            .setContentTitle(title)
+            .setAutoCancel(true)
+            .setContentText(body)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
+            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setCategory(NotificationCompat.CATEGORY_ALARM)
+            .setSound(defaultSoundUri)
+            .setContentIntent(pendingIntent)
         val notificationManager = ContextHolder.applicationContext?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         // Since android Oreo notification channel is needed.
         // https://developer.android.com/training/notify-user/build-notification#Priority
