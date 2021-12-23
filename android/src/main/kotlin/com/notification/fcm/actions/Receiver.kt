@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import com.notification.fcm.receiver.OnMessageReceived
 
 
@@ -20,7 +21,7 @@ class Receiver : BroadcastReceiver() {
             intent.action = receiver?.action
             intent.putExtra("data",sharedPreference?.getString("data","null"))
             context.startActivity(intent)
-
+            return
         }
 
     }

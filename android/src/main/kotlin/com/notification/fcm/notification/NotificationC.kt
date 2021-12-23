@@ -17,13 +17,12 @@ import com.notification.fcm.helper.ContextHolder
 import com.notification.fcm.helper.Utils
 import org.json.JSONObject
 
+
 class NotificationC {
 
 
     @SuppressLint("LongLogTag", "InvalidWakeLockTag")
     fun showNotification(title: String?, body: String?, data:Map<String,Any>) {
-
-
 
         val resId = ContextHolder.applicationContext?.resources?.getIdentifier(Utils.getIcon().split("\\.").get(0), Utils.getResource(), ContextHolder.applicationContext?.packageName)
 

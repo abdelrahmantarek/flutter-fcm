@@ -52,6 +52,7 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
+  int notification_number = 0;
 
   @override
   void initState(){
@@ -75,10 +76,17 @@ class _MyAppState extends State<MyApp> {
 
 
     Fcm.onMessage = (event){
+
+      notification_number++;
+
+      print(notification_number);
+
+      print(event.toString());
+
       if(event == null){
         return;
       }
-      print(event.toString());
+
       setState(() {
         json = jsonDecode(event);
         json.clear();

@@ -2,12 +2,13 @@ package com.notification.fcm
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.NonNull
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.messaging.FirebaseMessaging
 import com.notification.fcm.helper.ContextHolder
 import com.notification.fcm.helper.Utils
@@ -35,16 +36,37 @@ class FcmPlugin: FlutterPlugin, MethodChannel.MethodCallHandler, PluginRegistry.
   private lateinit var flutterPluginBinding : FlutterPlugin.FlutterPluginBinding
 
 
+  var mMyBroadcastReceiver: BroadcastReceiver? = null
+  private val myFilter: IntentFilter = IntentFilter(OnMessageReceived.ON_MESSAGE_RECEIVED)
+
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
    this.flutterPluginBinding = flutterPluginBinding
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "fcm")
     channel.setMethodCallHandler(this)
+
+
+
+
+    // fcm on message
+    mMyBroadcastReceiver = object : BroadcastReceiver( //Implementation of your BroadCastReceiver
+    ) {
+      override fun onReceive(context: Context, receiver: Intent) {
+        // Do whatever you like as sms is received and caught by these BroadCastReceiver
+        Toast.makeText(context, "SMS Received", Toast.LENGTH_LONG).show()
+        val sharedPreference = activity.getSharedPreferences(OnMessageReceived.NOTIFICATION, Context.MODE_PRIVATE)
+        channel.invokeMethod("on_message",sharedPreference.getString("data",null))
+      }
+    }
+
+    flutterPluginBinding.applicationContext.registerReceiver(mMyBroadcastReceiver, myFilter); // Register BroadCastReceiver Once again as your activity comes from pause to forground state again.
+
   }
 
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
+//    activity.unregisterReceiver(mMyBroadcastReceiver);
   }
 
 
@@ -163,16 +185,7 @@ class FcmPlugin: FlutterPlugin, MethodChannel.MethodCallHandler, PluginRegistry.
   @SuppressLint("LongLogTag")
   override fun onNewIntent(intent: Intent?): Boolean {
     Log.d(OnMessageReceived.TAG, "onReceive action : " + intent?.action.toString())
-    val sharedPreference = activity.getSharedPreferences(OnMessageReceived.NOTIFICATION, Context.MODE_PRIVATE)
     when (intent?.action) {
-
-      OnMessageReceived.ACTION_ON_MESSAGE -> {
-        if(sharedPreference?.getString("data",null) == null){
-          return true
-        }
-        channel.invokeMethod("on_message",sharedPreference.getString("data",null))
-      }
-
       OnMessageReceived.ACTION_CLICK -> {
         if(intent?.getStringExtra("data") == null){
           return true
