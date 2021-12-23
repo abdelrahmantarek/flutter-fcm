@@ -53,7 +53,6 @@ class FcmPlugin: FlutterPlugin, MethodChannel.MethodCallHandler, PluginRegistry.
     ) {
       override fun onReceive(context: Context, receiver: Intent) {
         // Do whatever you like as sms is received and caught by these BroadCastReceiver
-        Toast.makeText(context, "SMS Received", Toast.LENGTH_LONG).show()
         val sharedPreference = activity.getSharedPreferences(OnMessageReceived.NOTIFICATION, Context.MODE_PRIVATE)
         channel.invokeMethod("on_message",sharedPreference.getString("data",null))
       }
