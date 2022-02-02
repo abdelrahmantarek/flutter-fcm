@@ -151,7 +151,15 @@ class _MyAppState extends State<MyApp> {
 
                 RaisedButton(onPressed: (){
                   Fcm.deleteToken();
-                },child: Text("deleteToken"),)
+                },child: Text("deleteToken"),),
+
+                SizedBox(height: 10,),
+
+                RaisedButton(onPressed: (){
+                  Fcm.getToken.then((value){
+                    print(value);
+                  });
+                },child: Text("getToken"),)
 
 
               ],

@@ -53,6 +53,8 @@ class Fcm {
 
   static Future<bool> deleteToken() async {
     final bool version = await _channel.invokeMethod('deleteToken');
+    await Future.delayed(const Duration(seconds: 3));
+    dynamic refresh = Fcm.getToken;
     return version;
   }
 

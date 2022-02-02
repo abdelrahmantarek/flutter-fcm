@@ -38,7 +38,6 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
 
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [AnyHashable : Any] = [:]) -> Bool {
         print("start application --------------------------------------------- 2")
-        
           // [START set_messaging_delegate]
           Messaging.messaging().delegate = self
           // [END set_messaging_delegate]
@@ -303,12 +302,14 @@ public class SwiftFcmPlugin: NSObject, FlutterPlugin,MessagingDelegate {
           Messaging.messaging().deleteToken(completion: { (err) -> Void in
               print("error delete token ---------\(String(describing: err)) ")
           })
+          result(true)
       }
       
       if(call.method == "cancel_all_notification"){
           let center = UNUserNotificationCenter.current()
           center.removeAllDeliveredNotifications() // To remove all delivered notifications
           center.removeAllPendingNotificationRequests() // To remove all pending notifications which are not delivered yet but scheduled.
+          result(true)
       }
       
       
